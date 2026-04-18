@@ -170,6 +170,50 @@ public class SortExamples {
         }
     }
 
+    private static void arrayMergeSort(int[] array) {
+        if (array.length < 2)
+            return;
+
+        int middle = array.length / 2;
+
+        // Del arrayet i to halvdele
+        int[] left = new int[middle];
+        int[] right = new int[array.length - middle];
+
+        // Kopier data ind i hver halvdel
+        for (int i = 0; i < middle; i++)
+            left[i] = array[i];
+        for (int i = middle; i < array.length; i++)
+            right[i - middle] = array[i];
+
+        // Sorter hver halvdel rekursivt
+        arrayMergeSort(left);
+        arrayMergeSort(right);
+
+        // Flet de sorterede halvdele tilbage i det originale array
+        arrayMerge(array, left, right);
+    }
+
+    private static void arrayMerge(int[] input, int[] left, int[] right) {
+        int i = 0, l = 0, r = 0;
+
+        // Sammenlign elementer fra left og right og læg det mindste i input
+        while (l < left.length && r < right.length) {
+            if (left[l] <= right[r])
+                input[i++] = left[l++];
+            else
+                input[i++] = right[r++];
+        }
+
+        // Kopier resterende elementer fra left og right
+        while (l < left.length)
+            input[i++] = left[l++];
+
+        while (r < right.length)
+            input[i++] = right[r++];
+    }
+
+
 
 
 

@@ -10,8 +10,8 @@ public class Main {
     public static void main(String[] args) {
        //  testComplexity();
        // testLinearAndBinarySearch();
-        testBubble(10, true, true);
-       // testMerge(10, true, true);
+       // testBubble(10, true, true);
+        testMerge(10, true, true);
        // testListOperations();
        // testSearchOperations();
        // testSetOperations();
