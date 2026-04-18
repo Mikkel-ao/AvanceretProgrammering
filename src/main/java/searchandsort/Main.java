@@ -11,7 +11,8 @@ public class Main {
        //  testComplexity();
        // testLinearAndBinarySearch();
        // testBubble(10, true, true);
-        testMerge(10, true, true);
+       // testMerge(10, true, true);
+        testQuick(10, true, true);
        // testListOperations();
        // testSearchOperations();
        // testSetOperations();

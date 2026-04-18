@@ -60,6 +60,12 @@ public class SortExamples {
         }
     }
 
+    public static void arrayQuickSort(int[] array) {
+
+    }
+
+
+
     private static int partition(List<Student> students, int low, int high) {
         int pivotValue = students.get(high).getId();
         int i = low - 1;
