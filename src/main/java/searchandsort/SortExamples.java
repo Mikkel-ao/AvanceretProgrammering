@@ -17,6 +17,29 @@ public class SortExamples {
         }
     }
 
+    public static void arrayBubbleSort(int[] array) {
+        int n = array.length;
+
+        for (int i = 0; i < n - 1; i++) { // // Kør n-1 gange
+            boolean swapped = false;
+
+            // Sammenlign naboelementer, ignorer de allerede sorterede til sidst
+            for (int j = 0; j < n - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    swap(array, j, j + 1); // Byt om hvis forkert rækkefølge
+                    swapped = true;
+                }
+            }
+            if (!swapped) break; // Hvis array allerede er sorteret, break.
+        }
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
     public static void heapSort(List<Student> students) {
         PriorityQueue<Student> heap = new PriorityQueue<>(Comparator.comparingInt(Student::getId));
         heap.addAll(students);
