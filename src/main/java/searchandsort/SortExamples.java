@@ -73,6 +73,11 @@ public class SortExamples {
         return i + 1;
     }
 
+    // Helper method for parameters
+    public static void arrayQuickSort(int[] array) {
+        arrayQuickSort(array, 0, array.length - 1);
+    }
+
     // Rekursiv quicksort - sorterer array[low..high] ved at partitionere og sortere hver halvdel
     public static void arrayQuickSort(int[] array, int low, int high) {
         // Basecasen - stop rekursionen når der kun er et element tilbage
@@ -200,7 +205,7 @@ public class SortExamples {
         }
     }
 
-    private static void arrayMergeSort(int[] array) {
+    public static void arrayMergeSort(int[] array) {
         if (array.length < 2)
             return;
 

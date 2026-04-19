@@ -12,7 +12,8 @@ public class Main {
        // testLinearAndBinarySearch();
        // testBubble(10, true, true);
        // testMerge(10, true, true);
-        testQuick(10, true, true);
+       // testQuick(10, true, true);
+        testArraySorting();
        // testListOperations();
        // testSearchOperations();
        // testSetOperations();
@@ -199,6 +200,37 @@ public class Main {
         BigOExamples.removeStudent(hashSet, target); // O(1)
     }
 
+    private static void testArraySorting() {
+        int[] original = {9, 3, 6, 1, 7, 8, 10, 2, 4, 5};
+
+        // Bubble Sort
+        int[] array = Arrays.copyOf(original, original.length);
+        System.out.println("Before Bubble Sort: " + Arrays.toString(array));
+        long start = System.nanoTime();
+        SortExamples.arrayBubbleSort(array);
+        long stop = System.nanoTime();
+        System.out.println("After Bubble Sort:  " + Arrays.toString(array));
+        System.out.println("Bubble Sort tid: " + (stop - start) + " ns");
+
+        // Merge Sort
+        array = Arrays.copyOf(original, original.length);
+        System.out.println("Before Merge Sort:  " + Arrays.toString(array));
+        start = System.nanoTime();
+        SortExamples.arrayMergeSort(array);
+        stop = System.nanoTime();
+        System.out.println("After Merge Sort:   " + Arrays.toString(array));
+        System.out.println("Merge Sort tid: " + (stop - start) + " ns");
+
+        // Quick Sort
+        array = Arrays.copyOf(original, original.length);
+        System.out.println("Before Quick Sort:  " + Arrays.toString(array));
+        start = System.nanoTime();
+        SortExamples.arrayQuickSort(array);
+        stop = System.nanoTime();
+        System.out.println("After Quick Sort:   " + Arrays.toString(array));
+        System.out.println("Quick Sort tid: " + (stop - start) + " ns");
+    }
+
     // Hjælpemetoder til udskrift
     private static void printList(String label, List<Student> list) {
         System.out.println(label + ": ");
@@ -214,6 +246,10 @@ public class Main {
         }
     }
 
-
-
+    private static void printArray(String label, int[] arr) {
+        System.out.println(label + ": ");
+        for(int i:arr){
+            System.out.println(i);
+        }
+    }
 }
