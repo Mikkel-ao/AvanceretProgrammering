@@ -60,12 +60,6 @@ public class SortExamples {
         }
     }
 
-    public static void arrayQuickSort(int[] array) {
-
-    }
-
-
-
     private static int partition(List<Student> students, int low, int high) {
         int pivotValue = students.get(high).getId();
         int i = low - 1;
@@ -77,6 +71,36 @@ public class SortExamples {
         }
         Collections.swap(students, i + 1, high);
         return i + 1;
+    }
+
+    // Rekursiv quicksort - sorterer array[low..high] ved at partitionere og sortere hver halvdel
+    public static void arrayQuickSort(int[] array, int low, int high) {
+        // Basecasen - stop rekursionen når der kun er et element tilbage
+        if (low < high) {
+            // Find pivotens endelige placering
+            int pivot = arrayPartition(array, low, high);
+            // Sorter elementerne til venstre for pivot
+            arrayQuickSort(array, low, pivot - 1);
+            // Sorter elementerne til højre for pivot
+            arrayQuickSort(array, pivot + 1, high);
+        }
+    }
+
+    // Vælger det sidste element som pivot, placerer mindre elementer til venstre & større til højre.
+    private static int arrayPartition(int[] array, int low, int high) {
+        int pivotValue = array[high]; // Brug det sidste element som pivot
+        int i = low - 1; // i peger på det sidste mindre element
+
+        for (int j = low; j < high; j++) {
+            // Hvis current element er mindre end eller lig med pivot, byt det ind i venstre side
+            if (array[j] <= pivotValue) {
+                i++;
+                swap(array, i, j);
+            }
+        }
+        // Placér pivot på sin korrekte position mellem de to halvdele
+        swap(array, i + 1, high);
+        return i + 1; // Return pivotens endelige index
     }
 
     public static void mergeSort(Student[] students){
