@@ -17,6 +17,29 @@ public class SortExamples {
         }
     }
 
+    public static void arrayBubbleSort(int[] array) {
+        int n = array.length;
+
+        for (int i = 0; i < n - 1; i++) { // // Kør n-1 gange
+            boolean swapped = false;
+
+            // Sammenlign naboelementer, ignorer de allerede sorterede til sidst
+            for (int j = 0; j < n - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    swap(array, j, j + 1); // Byt om hvis forkert rækkefølge
+                    swapped = true;
+                }
+            }
+            if (!swapped) break; // Hvis array allerede er sorteret, break.
+        }
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
     public static void heapSort(List<Student> students) {
         PriorityQueue<Student> heap = new PriorityQueue<>(Comparator.comparingInt(Student::getId));
         heap.addAll(students);
@@ -48,6 +71,41 @@ public class SortExamples {
         }
         Collections.swap(students, i + 1, high);
         return i + 1;
+    }
+
+    // Helper method for parameters
+    public static void arrayQuickSort(int[] array) {
+        arrayQuickSort(array, 0, array.length - 1);
+    }
+
+    // Rekursiv quicksort - sorterer array[low..high] ved at partitionere og sortere hver halvdel
+    public static void arrayQuickSort(int[] array, int low, int high) {
+        // Basecasen - stop rekursionen når der kun er et element tilbage
+        if (low < high) {
+            // Find pivotens endelige placering
+            int pivot = arrayPartition(array, low, high);
+            // Sorter elementerne til venstre for pivot
+            arrayQuickSort(array, low, pivot - 1);
+            // Sorter elementerne til højre for pivot
+            arrayQuickSort(array, pivot + 1, high);
+        }
+    }
+
+    // Vælger det sidste element som pivot, placerer mindre elementer til venstre & større til højre.
+    private static int arrayPartition(int[] array, int low, int high) {
+        int pivotValue = array[high]; // Brug det sidste element som pivot
+        int i = low - 1; // i peger på det sidste mindre element
+
+        for (int j = low; j < high; j++) {
+            // Hvis current element er mindre end eller lig med pivot, byt det ind i venstre side
+            if (array[j] <= pivotValue) {
+                i++;
+                swap(array, i, j);
+            }
+        }
+        // Placér pivot på sin korrekte position mellem de to halvdele
+        swap(array, i + 1, high);
+        return i + 1; // Return pivotens endelige index
     }
 
     public static void mergeSort(Student[] students){
@@ -146,6 +204,50 @@ public class SortExamples {
             students.set(k++, right.get(j++));
         }
     }
+
+    public static void arrayMergeSort(int[] array) {
+        if (array.length < 2)
+            return;
+
+        int middle = array.length / 2;
+
+        // Del arrayet i to halvdele
+        int[] left = new int[middle];
+        int[] right = new int[array.length - middle];
+
+        // Kopier data ind i hver halvdel
+        for (int i = 0; i < middle; i++)
+            left[i] = array[i];
+        for (int i = middle; i < array.length; i++)
+            right[i - middle] = array[i];
+
+        // Sorter hver halvdel rekursivt
+        arrayMergeSort(left);
+        arrayMergeSort(right);
+
+        // Flet de sorterede halvdele tilbage i det originale array
+        arrayMerge(array, left, right);
+    }
+
+    private static void arrayMerge(int[] input, int[] left, int[] right) {
+        int i = 0, l = 0, r = 0;
+
+        // Sammenlign elementer fra left og right og læg det mindste i input
+        while (l < left.length && r < right.length) {
+            if (left[l] <= right[r])
+                input[i++] = left[l++];
+            else
+                input[i++] = right[r++];
+        }
+
+        // Kopier resterende elementer fra left og right
+        while (l < left.length)
+            input[i++] = left[l++];
+
+        while (r < right.length)
+            input[i++] = right[r++];
+    }
+
 
 
 
