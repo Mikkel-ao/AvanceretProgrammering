@@ -38,20 +38,16 @@ public class Vejnet {
 
         Scanner scanner = new Scanner(System.in);
 
-        // En node og den node vi kom fra.
-        // Skal bruges til at rekonstruere stien til sidst.
+        // En node og den node vi kom fra, bruges til at rekonstruere stien til sidst.
         Map<WeightedNode, WeightedNode> prev = new HashMap<>();
 
-        // Gemmer den billigste kendte afstand fra startnoden
-        // til hver node vi har fundet indtil videre.
+        // Gemmer den billigste kendte afstand fra startnoden for hver node fundet
         Map<WeightedNode, Integer> dist = new HashMap<>();
 
-        // Indeholder noder vi allerede er færdige med at undersøge.
-        // Når en node er visited skal den ikke undersøges igen.
+        // Indeholder noder vi allerede er færdige med at undersøge, skal ikke besøges igen
         Set<WeightedNode> visited = new HashSet<>();
 
-        // PriorityQueue sørger automatisk for at noden med
-        // den laveste distance bliver popped først.
+        // PriorityQueue sørger for at noden med laveste distance poppes først
         PriorityQueue<NodeWithDist> queue = new PriorityQueue<>();
 
         // Startnoden har distance 0 til sig selv.
