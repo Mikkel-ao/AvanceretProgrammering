@@ -167,8 +167,7 @@ public class Vejnet {
         printResult(dist, prev, source, destination);
     }
 
-    // ── Hjælpemetoder til output ──────────────────────────────────────────────
-
+    // Hjælpe metode til print
     private static void printHeader(WeightedNode source, WeightedNode destination) {
         System.out.println("═".repeat(70));
         System.out.printf("  Dijkstra: %s  →  %s%n",
@@ -178,6 +177,7 @@ public class Vejnet {
         System.out.println();
     }
 
+    // Hjælpe metode til print
     private static void printState(Map<WeightedNode, Integer> dist,
                                    Set<WeightedNode> visited,
                                    PriorityQueue<NodeWithDist> queue,
@@ -212,6 +212,7 @@ public class Vejnet {
         System.out.println();
     }
 
+    // Hjælpe metode til print
     private static void printResult(Map<WeightedNode, Integer> dist,
                                     Map<WeightedNode, WeightedNode> prev,
                                     WeightedNode source, WeightedNode destination) {
@@ -235,7 +236,6 @@ public class Vejnet {
         scanner.nextLine();
     }
 
-    // ── NodeWithDist ─────────────────────────────────────────────────────────
 
     private static class NodeWithDist implements Comparable<NodeWithDist> {
         WeightedNode node;
